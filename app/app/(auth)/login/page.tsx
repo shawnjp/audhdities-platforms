@@ -19,7 +19,7 @@ export default function LoginPage() {
         Build multi-tenant applications with custom domains. <br />
         <a
           className="font-medium text-black hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100"
-          href="https://vercel.com/blog/platforms-starter-kit"
+          href="/home"
           rel="noreferrer"
           target="_blank"
         >
