@@ -51,12 +51,14 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     jwt: async ({ token, user }) => {
+      console.log("JWT Callback", { token, user });
       if (user) {
         token.user = user;
       }
       return token;
     },
     session: async ({ session, token }) => {
+      console.log("Session Callback", { session, token });
       session.user = {
         ...session.user,
         // @ts-expect-error
@@ -65,6 +67,14 @@ export const authOptions: NextAuthOptions = {
         username: token?.user?.username || token?.user?.gh_username,
       };
       return session;
+    },
+  },
+  events: {
+    signIn: ({ user, account, profile, isNewUser }) => {
+      console.log("Sign In Event", { user, account, profile, isNewUser });
+    },
+    signOut: ({ session, token }) => {
+      console.log("Sign Out Event", { session, token });
     },
   },
 };
